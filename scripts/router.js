@@ -7,7 +7,7 @@ export const router = {};
  */
 router.setState = function(state) {
 
-  const titleHeader = document.querySelector('header');
+  const titleHeader = document.querySelector('header h1');
   const body = document.querySelector('body');
 
   if(state == null || state.name == 'home'){
@@ -20,35 +20,31 @@ router.setState = function(state) {
   }
 
   else if(state.name == 'jo-entry'){
+    
+    //title change
+    titleHeader.textContent = 'Entry ' + state.id;
 
-      //change title
-      titleHeader.textContent = 'Entry ' + state.id;
+    //class to body
+    body.className = 'single-entry';
 
-      //new class to body
-      body.className = 'individual-entry';
+    //update the page
+    body.removeChild(body.children[2]);
 
-      //update entry-page
-      body.removeChild(body.children[2]);
+    let singleEntry = document.createElement('entry-page');
+    body.insertBefore(singleEntry, body.children[2]);
 
-      let newEntry = document.createElement('entry-page');
-      body.insertBefore(newEntry, body.children[2]);
-
-      let joEntry = document.getElementById(state.id);
-      newEntry.entry = joEntry.entry;
-    }
-  
+    let joEntry = document.getElementById(state.id);
+    singleEntry.entry = joEntry.entry;
+  }
 
   else if(state.name == 'settings'){
 
-      //settings page
-      titleHeader.textContent = 'Settings';
+    //title change
+    titleHeader.textContent = 'Settings';
 
-      //class to the body
-      body.className = 'settings';
-      }
-    
+    //class to body
+    body.className = 'settings';
   }
-
 
 
   /**
@@ -80,4 +76,4 @@ router.setState = function(state) {
    *    1. You may add as many helper functions in this file as you like
    *    2. You may modify the parameters of setState() as much as you like
    */
-
+}

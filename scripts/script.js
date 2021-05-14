@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let newPost = document.createElement('journal-entry');
         newPost.entry = entry;
 
+        //id for each jo entry
         newPost.id = counter;
         counter++;
 
@@ -24,36 +25,33 @@ document.addEventListener('DOMContentLoaded', () => {
         newPost.addEventListener('click', () => {
           let entry = {name: 'jo-entry', id: newPost.id};
 
-          history.pushState(entry, '', '#Entry' + entry.id);
+          history.pushState(entry, '', 'Entry#' + entry.id);
           setState(entry);
         });
 
         document.querySelector('main').appendChild(newPost);
       });
 
-        
 
-      //listener to title header in order to change state
-      document.querySelector('header').addEventListener('click', () => {
+      //listener for clickling on header title
+      document.querySelector('header h1').addEventListener('click', () => {
 
-        //change if not already on home page
+        //change the state if we are not on homepage
         if(history.state.name != 'home' && history.state != null){
-          history.pushState(home, '', location.orign);
+          history.pushState(home, '', location.origin);
           setState(home);
         }
       });
 
-      //listener to settings button in order to change state
-      document.querySelector('img header').addEventListener('click', () => {
-        history.pushState(setting, '', 'settings');
+      //listener for the settings button
+      document.querySelector('header img').addEventListener('click', () => {
+        history.pushState(setting, '', 'Settings');
         setState(setting);
       });
-
-
-    });
+  });
 });
 
-
+//listener for the back button
 window.onpopstate = function(event){
   setState(event.state);
 };
