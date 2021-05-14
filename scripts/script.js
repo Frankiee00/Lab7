@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         newPost.id = counter;
         counter++;
 
-        document.querySelector('main').appendChild(newPost);
-
         //listener for each entry in order to change the states
         newPost.addEventListener('click', () => {
           let entry = {name: 'jo-entry', id: newPost.id};
@@ -30,23 +28,34 @@ document.addEventListener('DOMContentLoaded', () => {
           setState(entry);
         });
 
-        //listener to title header in order to change state
-        document.querySelector('header').addEventListener('click', () => {
-
-          //change if not already on home page
-          if(history.state.name != 'home' && history.state != null){
-            history.pushState(home, '', location.orign);
-            setState(home);
-          }
-        });
-
-        //listener to settings button in order to change state
-        document.querySelector('img header').addEventListener('click', () => {
-          history.pushState(setting, '', 'settings');
-          setState(setting);
-        });
-
-
+        document.querySelector('main').appendChild(newPost);
       });
+
+        
+
+      //listener to title header in order to change state
+      document.querySelector('header').addEventListener('click', () => {
+
+        //change if not already on home page
+        if(history.state.name != 'home' && history.state != null){
+          history.pushState(home, '', location.orign);
+          setState(home);
+        }
+      });
+
+      //listener to settings button in order to change state
+      document.querySelector('img header').addEventListener('click', () => {
+        history.pushState(setting, '', 'settings');
+        setState(setting);
+      });
+
+
     });
 });
+
+
+window.onpopstate = function(event){
+  setState(event.state);
+};
+
+

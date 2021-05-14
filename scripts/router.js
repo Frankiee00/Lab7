@@ -5,7 +5,7 @@ export const router = {};
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function() {
+router.setState = function(state) {
 
   const titleHeader = document.querySelector('header');
   const body = document.querySelector('body');
