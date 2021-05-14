@@ -19,8 +19,7 @@ router.setState = function() {
     body.className = '';
   }
 
-  else{
-    if(state.name == 'entry'){
+  else if(state.name == 'jo-entry'){
 
       //change title
       titleHeader.textContent = 'Entry ' + state.id;
@@ -39,16 +38,15 @@ router.setState = function() {
     }
   
 
-    else{
-      //settings page
-      if(state.name == 'settings'){
-        
-        titleHeader.textContent = 'Settings';
+  else if(state.name == 'settings'){
 
-        //class to the body
-        body.className = 'settings';
+      //settings page
+      titleHeader.textContent = 'Settings';
+
+      //class to the body
+      body.className = 'settings';
       }
-    }
+    
   }
 
 
